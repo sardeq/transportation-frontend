@@ -1,111 +1,314 @@
+/* ------------------------------------------------------------------
+   Design tokens — "archival paper"
+   Warm paper ground, ink text, one deep-green accent, amber for
+   anything the AI is unsure about. Layout uses logical properties
+   throughout so the whole UI mirrors cleanly in Arabic (RTL).
+------------------------------------------------------------------- */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --bg: #f4f2ed;
+  --bg-sunken: #ece9e2;
+  --surface: #ffffff;
+  --surface-2: #faf9f6;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --ink: #17191c;
+  --ink-2: #464b51;
+  --muted: #7a7f86;
+  --faint: #a7aab0;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
+  --rule: #e3dfd6;
+  --rule-strong: #cdc7bb;
+
+  --accent: #0e5a4a;
+  --accent-hover: #0b4a3d;
+  --accent-soft: #e2eee9;
+  --accent-line: #6fb59e;
+
+  --warn: #9a5b06;
+  --warn-soft: #fbf0db;
+  --warn-line: #e6b25c;
+
+  --danger: #b42318;
+  --danger-soft: #fbe8e5;
+
+  --info: #2b4c7e;
+  --info-soft: #e7edf6;
+
+  --font-sans: 'IBM Plex Sans Variable', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', 'IBM Plex Sans Arabic', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-arabic: 'IBM Plex Sans Arabic', 'IBM Plex Sans Variable', sans-serif;
+
+  --radius-sm: 5px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  --shadow-paper: 0 1px 2px rgb(23 25 28 / 6%), 0 8px 24px -12px rgb(23 25 28 / 18%);
+  --focus: 0 0 0 3px rgb(14 90 74 / 22%);
+
+  --sidebar-w: 248px;
+  --topbar-h: 56px;
+
+  color-scheme: light;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
   background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* Arabic UI: Plex Sans Arabic first, slightly larger for legibility. */
+:root[lang='ar'] {
+  --font-sans: 'IBM Plex Sans Arabic', 'IBM Plex Sans Variable', system-ui, sans-serif;
+  font-size: 14.5px;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body {
   margin: 0;
+  background: var(--bg);
 }
 
 h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
 p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'zero' 1;
+  letter-spacing: -0.01em;
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+.ar {
+  font-family: var(--font-arabic);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------
+   Shared primitives
+------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background 120ms,
+    border-color 120ms,
+    color 120ms;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--surface-2);
+  border-color: var(--ink-2);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn svg {
+  flex: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn--ink {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.btn--ink:hover:not(:disabled) {
+  background: #2b2f34;
+  border-color: #2b2f34;
+}
+
+.btn--danger {
+  color: var(--danger);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+}
+
+.btn--ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--bg-sunken);
+  border-color: transparent;
+}
+
+.btn--sm {
+  height: 30px;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+.btn--icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+:root[lang='ar'] .eyebrow {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+  font-size: 12px;
+}
+
+.field-label {
+  display: block;
+  margin-block-end: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.input,
+.select {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 120ms;
+}
+
+.input:hover,
+.select:hover {
+  border-color: var(--ink-2);
+}
+
+.input:focus,
+.select:focus {
+  border-color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Directional icons (arrows) mirror in RTL. */
+:root[dir='rtl'] .flip-rtl {
+  transform: scaleX(-1);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.flag-count {
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 99px;
+  background: var(--warn-soft);
+  color: var(--warn);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
 }

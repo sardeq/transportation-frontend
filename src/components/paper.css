@@ -1,0 +1,250 @@
+/* A scanned page, reconstructed. Sized like A4 and scaled by the viewer. */
+.paper {
+  position: relative;
+  width: 620px;
+  min-height: 860px;
+  padding: 48px 56px 40px;
+  background: #fdfcf8;
+  border: 1px solid #e9e5dc;
+  box-shadow: var(--shadow-paper);
+  color: #22252a;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.paper--ar {
+  font-family: var(--font-arabic);
+}
+
+.paper__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-block-end: 18px;
+  border-block-end: 1px solid #d9d4c8;
+  text-align: center;
+}
+
+.paper__emblem {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid #8b8576;
+  border-radius: 50%;
+}
+
+.paper__emblem span {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #8b8576;
+  transform: rotate(45deg);
+}
+
+.paper__state {
+  display: grid;
+  gap: 2px;
+}
+
+.paper__state strong {
+  font-size: 15px;
+}
+
+.paper__state span {
+  font-size: 11.5px;
+  color: #6c6a63;
+}
+
+.paper__title {
+  display: grid;
+  gap: 2px;
+  margin: 26px 0 28px;
+  text-align: center;
+}
+
+.paper__title h2 {
+  font-size: 19px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+.paper--en .paper__title h2 {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 17px;
+}
+
+.paper__title span {
+  font-size: 12px;
+  color: #6c6a63;
+}
+
+.paper__fields {
+  display: grid;
+  gap: 2px;
+  margin: 0 0 26px;
+}
+
+.paper__row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: baseline;
+  gap: 12px;
+  padding: 3px 0;
+  border-block-end: 1px dotted #ddd8cc;
+}
+
+.paper__row dt {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.paper__row dt::after {
+  content: ':';
+}
+
+.paper__row dd {
+  margin: 0;
+}
+
+/* Detected-value hotspot */
+.paper__hl {
+  padding: 1px 5px;
+  border: 0;
+  border-radius: 3px;
+  background: rgb(14 90 74 / 8%);
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: start;
+  transition:
+    background 120ms,
+    box-shadow 120ms;
+}
+
+.paper__hl.is-low {
+  background: rgb(230 178 92 / 22%);
+  box-shadow: inset 0 -2px 0 var(--warn-line);
+}
+
+.paper__hl:hover,
+.paper__hl.is-active {
+  background: rgb(14 90 74 / 16%);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.paper__hl.is-low.is-active,
+.paper__hl.is-low:hover {
+  box-shadow: 0 0 0 2px var(--warn);
+}
+
+.paper__body {
+  line-height: 1.9;
+  font-size: 13.5px;
+  text-align: justify;
+}
+
+.paper--en .paper__body {
+  font-family: var(--font-serif);
+  line-height: 1.7;
+}
+
+.paper__foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-block-start: 56px;
+}
+
+.paper__sign {
+  display: grid;
+  gap: 4px;
+  font-size: 11.5px;
+  color: #6c6a63;
+}
+
+.paper__scribble {
+  width: 120px;
+  height: 28px;
+  border-block-end: 1px solid #8b8576;
+  background: radial-gradient(ellipse 60% 40% at 40% 70%, transparent 60%, #4a5a7a 61%, transparent 64%),
+    radial-gradient(ellipse 40% 50% at 70% 60%, transparent 60%, #4a5a7a 62%, transparent 66%);
+  opacity: 0.7;
+}
+
+.paper__stamp {
+  display: grid;
+  place-content: center;
+  width: 96px;
+  height: 96px;
+  border: 2px solid rgb(43 76 126 / 55%);
+  border-radius: 50%;
+  outline: 1px solid rgb(43 76 126 / 35%);
+  outline-offset: -8px;
+  color: rgb(43 76 126 / 75%);
+  text-align: center;
+  transform: rotate(-12deg);
+}
+
+.paper__stamp span {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.paper__stamp small {
+  font-family: var(--font-mono);
+  font-size: 6.5px;
+  letter-spacing: 0.06em;
+}
+
+/* Skeleton (before OCR has read anything) */
+.paper--skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sk {
+  height: 9px;
+  border-radius: 3px;
+  background: #ebe7de;
+}
+
+.sk--c {
+  align-self: center;
+}
+
+.sk--title {
+  height: 14px;
+}
+
+.sk--gap {
+  height: 12px;
+  background: none;
+}
+
+.sk-row {
+  display: flex;
+  gap: 18px;
+}
+
+.paper__scanbar {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, rgb(14 90 74 / 10%) 80%, rgb(14 90 74 / 55%) 99%, transparent);
+  animation: scan 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-90px);
+  }
+  to {
+    transform: translateY(860px);
+  }
+}
